@@ -29,6 +29,15 @@ public class Operationimpl implements Operations {
 
     @Override
     public Answer saveanswers(Answer ans) {
-        return this.mo.save(ans);
+        Query q = new Query();
+        q.addCriteria(Criteria.where("code").is(ans.getCode()).and("attemptedBy").is(ans.getAttemptedBy()));
+        Answer a = this.mo.findOne(q,Answer.class);
+        if(a == null){
+            return this.mo.save(ans);
+        }
+        else{
+            return a;
+        }
+
     }
 }

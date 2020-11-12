@@ -5,10 +5,12 @@ import com.example.QuizBack.Models.Login;
 import com.example.QuizBack.Models.Question;
 import com.example.QuizBack.Models.Register;
 
+import java.util.Map;
+
 public interface Auth {
     Register register(Register reg);
 
-    String loginuser(Login log);
+    Map<String,Object> loginuser(Login log);
 
 
 }

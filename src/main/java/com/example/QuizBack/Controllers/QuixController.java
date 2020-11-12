@@ -28,7 +28,7 @@ public class QuixController<addquiz> {
     }
 
     @PostMapping("/saveanswer")
-    public ResponseEntity<?> saveAnswer(Answer ans){
+    public ResponseEntity<?> saveAnswer(@RequestBody Answer ans){
         Answer a = this.op.saveanswers(ans);
         return ResponseEntity.status(200).body(a);
     }

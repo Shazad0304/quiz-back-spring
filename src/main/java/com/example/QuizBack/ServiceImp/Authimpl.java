@@ -9,6 +9,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Component
 public class Authimpl implements Auth {
@@ -30,15 +33,18 @@ public class Authimpl implements Auth {
     }
 
     @Override
-    public String loginuser(Login log) {
+    public Map<String,Object> loginuser(Login log) {
         Query q = new Query();
         q.addCriteria(Criteria.where("email").is(log.getEmail()).and("password").is(log.getPassword()));
         Register reg = this.mo.findOne(q,Register.class);
+        Map<String,Object> map = new HashMap<>();
         if(reg == null){
             return null;
         }
         else{
-            return  reg.getUserid();
+            map.put("id",reg.getUserid());
+            map.put("type",reg.getUsertype());
+            return map;
         }
     }
 }

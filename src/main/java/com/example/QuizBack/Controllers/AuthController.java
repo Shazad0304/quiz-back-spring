@@ -37,16 +37,16 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody Login log){
-        String id = this.authservice.loginuser(log);
+        Map<String,Object> data = this.authservice.loginuser(log);
         int resp = 200;
 
         Map<String,Object> map = new HashMap<>();
-        if(id == null){
+        if(data == null){
             map.put("error","user not found");
             resp = 401;
         }
         else{
-            map.put("id",id);
+            map = data;
             resp = 200;
         }
 

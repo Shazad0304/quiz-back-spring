@@ -16,7 +16,7 @@ public class Answer {
     @Getter
     @Setter
     @NotBlank
-    private SIngleAnswer[] Answers;
+    private SIngleAnswer[] answers;
 
     @Getter
     @Setter
