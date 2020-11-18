@@ -47,4 +47,11 @@ public class Authimpl implements Auth {
             return map;
         }
     }
+
+    @Override
+    public Register getuserbyid(String id) {
+        Query q = new Query();
+        q.addCriteria(Criteria.where("userid").is(id));
+        return this.mo.findOne(q,Register.class);
+    }
 }

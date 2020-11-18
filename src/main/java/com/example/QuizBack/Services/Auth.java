@@ -12,5 +12,6 @@ public interface Auth {
 
     Map<String,Object> loginuser(Login log);
 
+    Register getuserbyid(String id);
 
 }

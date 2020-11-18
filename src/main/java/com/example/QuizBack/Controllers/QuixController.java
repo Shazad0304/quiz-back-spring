@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/quiz")
-public class QuixController<addquiz> {
+public class QuixController {
 
     @Autowired
     private Operations op;
@@ -27,6 +27,18 @@ public class QuixController<addquiz> {
         }
     }
 
+    @GetMapping("/getall/{id}")
+    public ResponseEntity<?> getallbyuserid(@PathVariable("id") String id){
+
+            return  ResponseEntity.status(200).body(this.op.getallbyuser(id));
+    }
+
+    @GetMapping("/getallanswers/{code}")
+    public ResponseEntity<?> getanswersbycode(@PathVariable("code") String code){
+
+        return  ResponseEntity.status(200).body(this.op.getallscoresbycode(code));
+    }
+
     @PostMapping("/saveanswer")
     public ResponseEntity<?> saveAnswer(@RequestBody Answer ans){
         Answer a = this.op.saveanswers(ans);
@@ -38,5 +50,9 @@ public class QuixController<addquiz> {
         return ResponseEntity.status(200).body(this.op.savequestion(q));
     }
 
+    @DeleteMapping("/delete/{code}")
+    public ResponseEntity<?> deletequiz(@PathVariable("code") String code){
+        return ResponseEntity.status(200).body(this.op.deletequiz(code));
+    }
 
 }
